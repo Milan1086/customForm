@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form Builder</title>
+  </head>
+
+  <body style="text-align: center">
+    <h1 style="color: rgb(79, 185, 79)">Form building app</h1>
+    <select
+      id="inputs"
+      name="inputs"
+      onmousedown="this.value=''"
+      onchange="newInput(this.value);"
+    >
+      <option value="select">-Select Input-</option>
+      <option value="text">text</option>
+      <option value="radio">radio</option>
+      <option value="dropdown">dropdown</option>
+      <option value="checkbox">checkbox</option>
+    </select>
+
+    <p id="GFG_DOWN"></p>
+    <script>
+      var down = document.getElementById("GFG_DOWN");
+
+      var br = document.createElement("br");
+
+      function newInput(inputVal) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "submit.php");
+        form.setAttribute("style", "display: table");
+
+        if (inputVal == "text") {
+          var inputLabel = document.createElement("label");
+          inputLabel.innerHTML = "Untitled Input&emsp;";
+          inputLabel.setAttribute("for", "textInput");
+          inputLabel.setAttribute("contenteditable", "true");
+
+          var textInput = document.createElement("input");
+          textInput.setAttribute("type", "text");
+          textInput.setAttribute("name", "FullName");
+
+          form.append(inputLabel, textInput);
+          form.appendChild(br.cloneNode());
+        } else if (inputVal == "radio") {
+          var numRadio = prompt("Number of radio buttons");
+          var inputLabel1 = document.createElement("label");
+          inputLabel1.innerHTML = "Untitled Input&emsp;";
+          inputLabel1.setAttribute("for", "radioInput");
+          inputLabel1.setAttribute("contenteditable", "true");
+
+          form.append(inputLabel1);
+
+          for (let i = 0; i < numRadio; i++) {
+            var radioInput = document.createElement("input");
+            radioInput.setAttribute("type", "radio");
+            radioInput.setAttribute("name", "FullName");
+            radioInput.setAttribute("value", "FullName");
+
+            var inputLabel2 = document.createElement("label");
+            inputLabel2.innerHTML = "&nbsp;Option 1";
+            inputLabel2.setAttribute("for", "radioInput");
+            inputLabel2.setAttribute("contenteditable", "true");
+
+            form.append(radioInput, inputLabel2);
+
+            form.appendChild(br.cloneNode());
+          }
+        } else if (inputVal == "checkbox") {
+          var numCheckbox = prompt("Number of checkboxes");
+
+          var inputLabel1 = document.createElement("label");
+          inputLabel1.innerHTML = "Untitled Input&emsp;";
+          inputLabel1.setAttribute("for", "checkboxInput");
+          inputLabel1.setAttribute("contenteditable", "true");
+          form.append(inputLabel1);
+
+          for (let i = 0; i < numCheckbox; i++) {
+            var checkboxInput = document.createElement("input");
+            checkboxInput.setAttribute("type", "checkbox");
+            checkboxInput.setAttribute("name", "FullName");
+            checkboxInput.setAttribute("value", "FullName");
+
+            var inputLabel2 = document.createElement("label");
+            inputLabel2.innerHTML = "&nbsp;Option 1";
+            inputLabel2.setAttribute("for", "checkboxInput");
+            inputLabel2.setAttribute("contenteditable", "true");
+
+            form.append(checkboxInput, inputLabel2);
+            form.appendChild(br.cloneNode());
+          }
+        } else if (inputVal == "dropdown") {
+          var numDropdown = prompt("Number of Options");
+
+          var inputLabel1 = document.createElement("label");
+          inputLabel1.innerHTML = "Untitled Input&emsp;";
+          inputLabel1.setAttribute("for", "checkboxInput");
+          inputLabel1.setAttribute("contenteditable", "true");
+
+          var dropdownInput = document.createElement("select");
+          for (let i = 0; i < numDropdown; i++) {
+            var options = document.createElement("option");
+            dropdownInput.append(options);
+          }
+
+          form.append(inputLabel1, dropdownInput);
+          form.appendChild(br.cloneNode());
+        }
+
+        document.getElementsByTagName("body")[0].appendChild(form);
+      }
+    </script>
+  </body>
+</html>
